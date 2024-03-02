@@ -2,15 +2,16 @@ using Command.Player;
 
 namespace Command.Commands
 {
-    public abstract class UnitCommand : ICommand
+    public abstract class IUnitCommand : ICommand
     {
-        public int ActorUnitID;
-        public int TargetUnitID;
-        public int ActorPlayerID;
-        public int TargetPlayerID;
+        private CommandData _commandData;
 
         protected UnitController actorUnit;
         protected UnitController targetUnit;
+
+        public void SetActorUnit(UnitController actorUnit) => this.actorUnit = actorUnit;
+
+        public void SetTargetUnit(UnitController targetUnit) => this.targetUnit = targetUnit;
 
         public abstract void Execute();
 

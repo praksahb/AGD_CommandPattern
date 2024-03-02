@@ -1,6 +1,6 @@
-namespace Command.Actions
+namespace Command
 {
-    public enum ActionType
+    public enum CommandType
     {
         None,
         Attack,

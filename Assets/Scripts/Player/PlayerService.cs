@@ -1,4 +1,3 @@
-using Command.Actions;
 using Command.Main;
 
 namespace Command.Player
@@ -23,7 +22,7 @@ namespace Command.Player
 
         private void CleanPlayers()
         {
-            if(player1 == null || player2 == null)
+            if (player1 == null || player2 == null)
                 return;
 
             player1.DestroyAllUnits();
@@ -45,13 +44,13 @@ namespace Command.Player
         private void StartNextTurn()
         {
             SetActivePlayer();
-            
+
             if (activePlayer == player1)
             {
                 currentTurnNumber++;
                 GameService.Instance.UIService.UpdateTurnNumber(currentTurnNumber);
             }
-            
+
             activePlayer.StartPlayerTurn();
         }
 
@@ -59,13 +58,13 @@ namespace Command.Player
         {
             if (activePlayer == null)
                 activePlayer = player1;
-            else 
+            else
                 activePlayer = activePlayer == player1 ? player2 : player1;
         }
 
         public void OnPlayerTurnCompleted() => StartNextTurn();
 
-        public void PerformAction(ActionType actionSelected, UnitController targetUnit) => GameService.Instance.ActionService.GetActionByType(actionSelected).PerformAction(activePlayer.GetUnitByID(ActiveUnitID), targetUnit);
+        public void PerformAction(CommandType actionSelected, UnitController targetUnit) => GameService.Instance.ActionService.GetActionByType(actionSelected).PerformAction(activePlayer.GetUnitByID(ActiveUnitID), targetUnit, );
 
         public void PlayerDied(PlayerController deadPlayer)
         {
@@ -79,7 +78,7 @@ namespace Command.Player
             GameService.Instance.UIService.ShowBattleEndUI(winnerId);
         }
 
-        private PlayerController GetPlayerById(int playerId) 
+        private PlayerController GetPlayerById(int playerId)
         {
             if (player1.PlayerID == playerId)
                 return player1;
