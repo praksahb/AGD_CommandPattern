@@ -11,7 +11,7 @@ namespace Command.Commands
 
         public AttackStanceCommand(CommandData commandData)
         {
-            _commandData = commandData;
+            base.commandData = commandData;
             willHitTarget = WillHitTarget();
         }
 

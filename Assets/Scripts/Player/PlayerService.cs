@@ -110,6 +110,8 @@ namespace Command.Player
             var actorUnit = GetPlayerById(commandToProcess.commandData.ActorPlayerID).GetUnitByID(commandToProcess.commandData.ActorUnitID);
             var targetUnit = GetPlayerById(commandToProcess.commandData.TargetPlayerID).GetUnitByID(commandToProcess.commandData.TargetUnitID);
 
+            UnityEngine.Debug.Log("actor: " + actorUnit.UnitID);
+            UnityEngine.Debug.Log("target: " + targetUnit.UnitID);
             // Set the actor and target units for the command.
             commandToProcess.SetActorUnit(actorUnit);
             commandToProcess.SetTargetUnit(targetUnit);

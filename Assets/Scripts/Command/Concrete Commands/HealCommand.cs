@@ -4,14 +4,11 @@ namespace Command.Commands
 {
     public class HealCommand : IUnitCommand
     {
-        private CommandData _commandData;
-
         private bool willHitTarget;
-
 
         public HealCommand(CommandData commandData)
         {
-            _commandData = commandData;
+            base.commandData = commandData;
             willHitTarget = WillHitTarget();
         }
 

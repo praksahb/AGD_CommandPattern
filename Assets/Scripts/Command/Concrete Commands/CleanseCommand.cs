@@ -4,14 +4,11 @@ namespace Command.Commands
 {
     public class CleanseCommand : IUnitCommand
     {
-        private CommandData _commandData;
-
         private bool willHitTarget;
-
 
         public CleanseCommand(CommandData commandData)
         {
-            _commandData = commandData;
+            base.commandData = commandData;
             willHitTarget = WillHitTarget();
         }
 

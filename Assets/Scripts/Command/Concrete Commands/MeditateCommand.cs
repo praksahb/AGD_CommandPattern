@@ -4,14 +4,12 @@ namespace Command.Commands
 {
     public class MeditateCommand : IUnitCommand
     {
-        private CommandData _commandData;
-
         private bool willHitTarget;
 
 
         public MeditateCommand(CommandData commandData)
         {
-            _commandData = commandData;
+            base.commandData = commandData;
             willHitTarget = WillHitTarget();
         }
 

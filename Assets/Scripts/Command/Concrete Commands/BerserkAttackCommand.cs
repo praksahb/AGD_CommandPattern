@@ -4,14 +4,11 @@ namespace Command.Commands
 {
     public class BerserkAttackCommand : IUnitCommand
     {
-        private CommandData _commandData;
-
         private bool willHitTarget;
-
 
         public BerserkAttackCommand(CommandData commandData)
         {
-            _commandData = commandData;
+            base.commandData = commandData;
             willHitTarget = WillHitTarget();
         }
 

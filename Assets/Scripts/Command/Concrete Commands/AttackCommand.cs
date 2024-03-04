@@ -7,7 +7,6 @@ namespace Command.Commands
     {
         private bool willHitTarget;
 
-
         public AttackCommand(CommandData commandData)
         {
             base.commandData = commandData;

@@ -4,14 +4,12 @@ namespace Command.Commands
 {
     public class ThirdEyeCommand : IUnitCommand
     {
-        private CommandData _commandData;
-
         private bool willHitTarget;
 
 
         public ThirdEyeCommand(CommandData commandData)
         {
-            _commandData = commandData;
+            base.commandData = commandData;
             willHitTarget = WillHitTarget();
         }
 
