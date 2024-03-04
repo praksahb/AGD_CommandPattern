@@ -2,7 +2,7 @@ using Command.Player;
 
 namespace Command.Commands
 {
-    public abstract class UnitCommand : ICommand
+    public abstract class IUnitCommand : ICommand
     {
         public CommandData commandData;
 
@@ -13,8 +13,11 @@ namespace Command.Commands
 
         public abstract bool WillHitTarget();
 
+        public abstract void Undo();
+
         public void SetActorUnit(UnitController actorUnit) => this.actorUnit = actorUnit;
 
         public void SetTargetUnit(UnitController targetUnit) => this.targetUnit = targetUnit;
+
     }
 }

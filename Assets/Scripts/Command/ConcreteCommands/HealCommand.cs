@@ -2,7 +2,7 @@ using Command.Main;
 
 namespace Command.Commands
 {
-    public class HealCommand : UnitCommand
+    public class HealCommand : IUnitCommand
     {
         private bool willHitTarget;
 
@@ -15,5 +15,14 @@ namespace Command.Commands
         public override void Execute() => GameService.Instance.ActionService.GetActionByType(CommandType.Heal).PerformAction(actorUnit, targetUnit, willHitTarget);
 
         public override bool WillHitTarget() => true;
+
+        public override void Undo()
+        {
+            if (willHitTarget)
+            {
+                targetUnit.TakeDamage(actorUnit.CurrentPower);
+                actorUnit.Owner.ResetCurrentActiveUnit();
+            }
+        }
     }
 }

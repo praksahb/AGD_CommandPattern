@@ -23,7 +23,7 @@ namespace Command.Player
 
         private void CleanPlayers()
         {
-            if(player1 == null || player2 == null)
+            if (player1 == null || player2 == null)
                 return;
 
             player1.DestroyAllUnits();
@@ -45,13 +45,13 @@ namespace Command.Player
         private void StartNextTurn()
         {
             SetActivePlayer();
-            
+
             if (activePlayer == player1)
             {
                 currentTurnNumber++;
                 GameService.Instance.UIService.UpdateTurnNumber(currentTurnNumber);
             }
-            
+
             activePlayer.StartPlayerTurn();
         }
 
@@ -59,7 +59,7 @@ namespace Command.Player
         {
             if (activePlayer == null)
                 activePlayer = player1;
-            else 
+            else
                 activePlayer = activePlayer == player1 ? player2 : player1;
         }
 
@@ -77,13 +77,13 @@ namespace Command.Player
             GameService.Instance.UIService.ShowBattleEndUI(winnerId);
         }
 
-        public void ProcessUnitCommand(UnitCommand commandToProcess)
+        public void ProcessUnitCommand(IUnitCommand commandToProcess)
         {
             SetUnitReferences(commandToProcess);
             GetPlayerById(commandToProcess.commandData.ActorPlayerID).ProcessUnitCommand(commandToProcess);
         }
 
-        private void SetUnitReferences(UnitCommand commandToProcess)
+        private void SetUnitReferences(IUnitCommand commandToProcess)
         {
             var actorUnit = GetPlayerById(commandToProcess.commandData.ActorPlayerID).GetUnitByID(commandToProcess.commandData.ActorUnitID);
             var targetUnit = GetPlayerById(commandToProcess.commandData.TargetPlayerID).GetUnitByID(commandToProcess.commandData.TargetUnitID);
@@ -91,7 +91,7 @@ namespace Command.Player
             commandToProcess.SetTargetUnit(targetUnit);
         }
 
-        private PlayerController GetPlayerById(int playerId) 
+        private PlayerController GetPlayerById(int playerId)
         {
             if (player1.PlayerID == playerId)
                 return player1;

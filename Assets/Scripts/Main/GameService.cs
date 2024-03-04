@@ -1,15 +1,14 @@
-using UnityEngine;
-using Command.Utilities;
-using Command.Sound;
-using System.Collections.Generic;
+using Command.Actions;
+using Command.Battle;
+using Command.Commands;
+using Command.Events;
 using Command.Input;
 using Command.Player;
+using Command.Sound;
 using Command.UI;
-using Command.Events;
-using Command.Battle;
-using Command.Actions;
-using UnityEngine.UI;
-using Command.Commands;
+using Command.Utilities;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Command.Main
 {
@@ -56,6 +55,6 @@ namespace Command.Main
 
         private void Update() => InputService.UpdateInputService();
 
-        public void ProcessUnitCommand(ICommand commandToProcess) => PlayerService.ProcessUnitCommand(commandToProcess as UnitCommand);
+        public void ProcessUnitCommand(ICommand commandToProcess) => PlayerService.ProcessUnitCommand(commandToProcess as IUnitCommand);
     }
 }
