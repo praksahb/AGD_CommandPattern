@@ -5,14 +5,12 @@ namespace Command.Commands
 
     public class AttackCommand : IUnitCommand
     {
-        private CommandData _commandData;
-
         private bool willHitTarget;
 
 
         public AttackCommand(CommandData commandData)
         {
-            _commandData = commandData;
+            base.commandData = commandData;
             willHitTarget = WillHitTarget();
         }
 

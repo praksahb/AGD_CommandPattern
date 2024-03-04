@@ -42,7 +42,7 @@ namespace Command.Main
         [SerializeField] private AudioSource bgMusicSource;
 
         // pass ref of current command to GameService
-        private IUnitCommand _commandToProcess;
+        public void ProcessUnitCommand(ICommand commandToProcess) => PlayerService.ProcessUnitCommand(commandToProcess as IUnitCommand);
 
         private void Start()
         {
@@ -57,10 +57,5 @@ namespace Command.Main
         }
 
         private void Update() => InputService.UpdateInputService();
-
-        public void ProcessUnitCommand(IUnitCommand commandToProcess)
-        {
-            _commandToProcess = commandToProcess;
-        }
     }
 }

@@ -1,4 +1,4 @@
-using Command.Actions;
+using Command.Commands;
 using Command.Main;
 using System;
 using System.Collections;
@@ -160,6 +160,8 @@ namespace Command.Player
             else
                 return unitView.transform.position - unitScriptableObject.EnemyBattlePositionOffset;
         }
+
+        public void ProcessUnitCommand(IUnitCommand commandToProcess) => GameService.Instance.CommandInvoker.ProcessCommand(commandToProcess);
     }
 
     public enum UnitUsedState

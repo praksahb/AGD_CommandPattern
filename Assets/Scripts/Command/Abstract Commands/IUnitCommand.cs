@@ -4,8 +4,8 @@ namespace Command.Commands
 {
     public abstract class IUnitCommand : ICommand
     {
-        private CommandData _commandData;
 
+        public CommandData commandData;
         protected UnitController actorUnit;
         protected UnitController targetUnit;
 
