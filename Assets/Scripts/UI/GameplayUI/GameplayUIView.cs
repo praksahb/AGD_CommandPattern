@@ -1,8 +1,8 @@
-using Command.Input;
+using Command.Main;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 namespace Command.UI
 {
@@ -17,11 +17,13 @@ namespace Command.UI
         [SerializeField] private Color EnemyOverlayColor;
         [SerializeField] private Color ActionSelectionOverlayColor;
         [SerializeField] private Image backgroundImage;
+        [SerializeField] private Button undoButton;
 
-        public void SetController(GameplayUIController controllerToSet) 
+        public void SetController(GameplayUIController controllerToSet)
         {
             controller = controllerToSet;
             missedText.canvasRenderer.SetAlpha(0);
+            undoButton.onClick.AddListener(OnUndoButtonClicked);
         }
 
         public void DisableView() => gameObject.SetActive(false);
@@ -30,9 +32,11 @@ namespace Command.UI
 
         public void SetTurnText(string turnText) => this.turnText.SetText(turnText);
 
+        public void OnUndoButtonClicked() => GameService.Instance.CommandInvoker.Undo();
+
         public void ShowPlayerOverlay(int targetPlayer, OverlayColorType overlayColorType)
         {
-            switch(targetPlayer)
+            switch (targetPlayer)
             {
                 case 1:
                     Player1BackgroundOverlay.enabled = true;
@@ -62,7 +66,7 @@ namespace Command.UI
 
         public void SetOverlayColor(Image overlayImage, OverlayColorType colorType)
         {
-            switch(colorType)
+            switch (colorType)
             {
                 case OverlayColorType.Friendly:
                     overlayImage.color = FriendlyOverlayColor;
@@ -82,7 +86,7 @@ namespace Command.UI
         {
             backgroundImage.gameObject.SetActive(true);
             backgroundImage.sprite = bgSprite;
-        } 
+        }
     }
 
     [Serializable]
