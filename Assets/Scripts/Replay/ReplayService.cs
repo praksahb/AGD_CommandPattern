@@ -1,6 +1,8 @@
 using Command.Commands;
 using Command.Main;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Command.Replay
 {
@@ -23,10 +25,20 @@ namespace Command.Replay
         public void SetCommandStack(Stack<ICommand> commandsToSet) => replayCommandStack = new Stack<ICommand>(commandsToSet);
 
         // Execute the next recorded command in the stack if there are commands left to replay.
-        public void ExecuteNext()
+        // Wait for 1 second before executing next command
+        public IEnumerator ExecuteNext()
         {
-            if (replayCommandStack.Count > 0)
+            if (ReplayState == ReplayState.ACTIVE && replayCommandStack.Count > 0)
+            {
+                yield return new WaitForSeconds(1f);
                 GameService.Instance.ProcessUnitCommand(replayCommandStack.Pop());
+            }
+        }
+
+        // Update the stack - add command to stack
+        public void UpdateCommandStack(ICommand commandToUpdate)
+        {
+            replayCommandStack.Push(commandToUpdate);
         }
     }
 
