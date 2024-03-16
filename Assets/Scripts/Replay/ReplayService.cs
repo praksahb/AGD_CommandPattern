@@ -25,26 +25,16 @@ namespace Command.Replay
         public void SetCommandStack(Stack<ICommand> commandsToSet) => replayCommandStack = new Stack<ICommand>(commandsToSet);
 
         // Execute the next recorded command in the stack if there are commands left to replay.
-        // Wait for 1 second before executing next command
         public IEnumerator ExecuteNext()
         {
-            if (ReplayState == ReplayState.ACTIVE && replayCommandStack.Count > 0)
-            {
-                yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1);
+            if (replayCommandStack.Count > 0)
                 GameService.Instance.ProcessUnitCommand(replayCommandStack.Pop());
-            }
-        }
-
-        // Update the stack - add command to stack
-        public void UpdateCommandStack(ICommand commandToUpdate)
-        {
-            replayCommandStack.Push(commandToUpdate);
         }
     }
 
     public enum ReplayState
     {
-        NONE,
         DEACTIVE,
         ACTIVE,
     }
